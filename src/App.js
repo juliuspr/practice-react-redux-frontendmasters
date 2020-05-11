@@ -3,47 +3,40 @@ import "./styles.css";
 import { connect, Provider } from "react-redux";
 import { store } from "./redux/store";
 import { addTodo, removeTodo } from "./redux/actions";
-
+import Counter from "./components/Counter";
 import TodoManager from "./components/TodoManager";
 
 export default function App(props) {
   return (
     <Provider store={store}>
-      <AppMiddle />
+      <div className="App">
+        <CounterContainer />
+        <hr />
+        <TodoManagerContainer />
+      </div>
     </Provider>
   );
 }
 
-function AppChild({ count, increment, decrement }) {
-  return (
-    <div className="App">
-      <h1>{count}</h1>
-      <button onClick={increment}>Increment</button>
-      <button onClick={decrement}>Decrement</button>
-      <hr />
-      <TodoManager />
-    </div>
-  );
-}
-
-const mapStateToProps = state => state.counter;
-// const mapDispatchToProps = function(dispatch) {
-//   return {
-//     increment: function() {
-//       dispatch(addTodo(1));
-//     },
-//     decrement: function() {
-//       dispatch(removeTodo(1));
-//     }
-//   };
-// };
+const mapStateToProps = state => state;
 
 const mapDispatchToProps = {
   increment: addTodo,
   decrement: removeTodo
 };
 
-const AppMiddle = connect(
+const CounterContainer = connect(
   mapStateToProps,
   mapDispatchToProps
-)(AppChild);
+)(Counter);
+
+const mapTodoDispatchToProps = {
+  addTodo: addTodo
+};
+
+const mapTodoStateToProps = state => state.todos;
+
+const TodoManagerContainer = connect(
+  mapTodoStateToProps,
+  mapTodoDispatchToProps
+)(TodoManager);
