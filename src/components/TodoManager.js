@@ -1,29 +1,23 @@
 import React, { useState } from "react";
+import { store } from "../redux/store";
 
 import TodoForm from "./TodoForm";
 import TodoList from "./TodoList";
+import { ADD_TODO } from "../redux/actions";
 
 export default function(props) {
-  const [state, setState] = useState({
-    todoInput: "",
-    todos: [{ text: "Buy milk" }, { text: "Take out the trash" }]
-  });
+  const [state, setState] = useState({ todoInput: "" });
 
   const submitForm = e => {
-    setState({
-      ...state,
-      todoInput: "",
-      todos: [...state.todos, { text: state.todoInput }]
-    });
+    store.dispatch({ type: ADD_TODO, payload: { text: state.todoInput } });
+    setState({ todoInput: "" });
     e.preventDefault();
   };
 
-  const handleFormChange = e => {
-    setState({
-      ...state,
-      todoInput: e.target.value
-    });
-  };
+  const handleFormChange = e => setState({ todoInput: e.target.value });
+
+  const list = store.getState("todos");
+  // console.log(list.todos.todos);
 
   return (
     <div>
@@ -42,7 +36,7 @@ export default function(props) {
           </button>
         </form>
       </div>
-      <TodoList todos={state.todos} />
+      <TodoList todos={list.todos.todos} />
     </div>
   );
 }

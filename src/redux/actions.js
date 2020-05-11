@@ -1,17 +1,18 @@
+export const INCREMENT = "INCREMENT";
+export const DECREMENT = "DECREMENT";
 export const ADD_TODO = "ADD_TODO";
-export const REMOVE_TODO = "REMOVE_TODO";
 export const MARK_DONE = "MARK_DONE";
 
 export const addTodo = text => {
   return {
-    type: ADD_TODO,
+    type: INCREMENT,
     payload: { text }
   };
 };
 
 export const removeTodo = text => {
   return {
-    type: REMOVE_TODO,
+    type: DECREMENT,
     payload: { text }
   };
 };
