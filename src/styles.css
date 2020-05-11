@@ -2,3 +2,12 @@
   font-family: sans-serif;
   text-align: center;
 }
+
+.done {
+  text-decoration: line-through;
+  color: #ddd;
+}
+
+li:hover {
+  cursor: crosshair;
+}
