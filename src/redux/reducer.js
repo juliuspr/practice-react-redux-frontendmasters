@@ -19,7 +19,7 @@ const initialTodoState = {
 };
 
 export const todoReducer = (state = initialTodoState, action) => {
-  if (action.type === ADD_TODO) {
+  if (action.type === ADD_TODO && action.payload.text !== "") {
     return {
       ...state,
       todos: [
