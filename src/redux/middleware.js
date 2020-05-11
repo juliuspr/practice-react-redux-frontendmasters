@@ -1,7 +1,7 @@
 export const logger = store => {
   return next => action => {
     const value = next(action);
-    store.getState();
+    console.log(store.getState());
     return value;
   };
 };
