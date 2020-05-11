@@ -3,7 +3,8 @@ import "./styles.css";
 import { connect, Provider } from "react-redux";
 import { store } from "./redux/store";
 import { addTodo, removeTodo } from "./redux/actions";
-import { bindActionCreators } from "redux";
+
+import TodoManager from "./components/TodoManager";
 
 export default function App(props) {
   return (
@@ -16,9 +17,10 @@ export default function App(props) {
 function AppChild({ count, increment, decrement }) {
   return (
     <div className="App">
-      <h1>Hi s {count}</h1>
+      <h1>{count}</h1>
       <button onClick={increment}>Increment</button>
       <button onClick={decrement}>Decrement</button>
+      <TodoManager />
     </div>
   );
 }
