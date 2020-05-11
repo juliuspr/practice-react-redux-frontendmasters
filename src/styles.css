@@ -9,5 +9,5 @@
 }
 
 li:hover {
-  cursor: crosshair;
+  cursor: pointer;
 }
