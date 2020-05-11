@@ -2,14 +2,26 @@ import React from "react";
 
 import TodoForm from "./TodoForm";
 import TodoList from "./TodoList";
+import { connect } from "react-redux";
+import { addTodo } from "../redux/actions";
 
-export default function({ todos }) {
-  // console.log(props);
+function TodoManager({ todos, dispatchAddTodo }) {
   return (
     <div>
       <h1>ToDo Manager</h1>
-      <TodoForm />
+      <TodoForm addTodo={dispatchAddTodo} />
       <TodoList todos={todos} />
     </div>
   );
 }
+
+const mapTodoDispatchToProps = {
+  dispatchAddTodo: addTodo
+};
+
+const mapTodoStateToProps = state => state.todos;
+
+export const TodoManagerContainer = connect(
+  mapTodoStateToProps,
+  mapTodoDispatchToProps
+)(TodoManager);

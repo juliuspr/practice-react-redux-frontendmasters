@@ -1,10 +1,9 @@
 import React from "react";
 import "./styles.css";
-import { connect, Provider } from "react-redux";
+import { Provider } from "react-redux";
 import { store } from "./redux/store";
-import { addTodo, removeTodo } from "./redux/actions";
-import Counter from "./components/Counter";
-import TodoManager from "./components/TodoManager";
+import { CounterContainer } from "./components/Counter";
+import { TodoManagerContainer } from "./components/TodoManager";
 
 export default function App(props) {
   return (
@@ -13,30 +12,8 @@ export default function App(props) {
         <CounterContainer />
         <hr />
         <TodoManagerContainer />
+        <hr />
       </div>
     </Provider>
   );
 }
-
-const mapStateToProps = state => state;
-
-const mapDispatchToProps = {
-  increment: addTodo,
-  decrement: removeTodo
-};
-
-const CounterContainer = connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(Counter);
-
-const mapTodoDispatchToProps = {
-  addTodo: addTodo
-};
-
-const mapTodoStateToProps = state => state.todos;
-
-const TodoManagerContainer = connect(
-  mapTodoStateToProps,
-  mapTodoDispatchToProps
-)(TodoManager);

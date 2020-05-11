@@ -1,12 +1,10 @@
 import React, { useState } from "react";
-import { ADD_TODO } from "../redux/actions";
-import { store } from "../redux/store";
 
-export default function() {
+export default function({ addTodo }) {
   const [state, setState] = useState({ todoInput: "" });
 
   const submitForm = e => {
-    store.dispatch({ type: ADD_TODO, payload: { text: state.todoInput } });
+    addTodo(state.todoInput);
     setState({ todoInput: "" });
     e.preventDefault();
   };
