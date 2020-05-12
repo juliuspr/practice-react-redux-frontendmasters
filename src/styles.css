@@ -11,3 +11,25 @@
 li:hover {
   cursor: pointer;
 }
+
+.list {
+  height: 10vw;
+  width: 100%;
+  padding-top: 10px;
+  border: 1px solid grey;
+  vertical-align: middle;
+}
+
+.snooze {
+  height: 10vw;
+  width: 100%;
+  padding-top: 10px;
+  background-color: orange;
+}
+.mark-done {
+  height: 10vw;
+  width: 100%;
+  padding-top: 10px;
+  background-color: green;
+  color: white;
+}

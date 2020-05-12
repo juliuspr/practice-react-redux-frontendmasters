@@ -19,7 +19,7 @@ export default function({ addTodo }) {
           name="newTodo"
           value={state.todoInput}
           onChange={handleFormChange}
-          placeholder="Add todo..."
+          placeholder="Add item..."
         />
         <button type="submit" onClick={submitForm} onSubmit={submitForm}>
           Add

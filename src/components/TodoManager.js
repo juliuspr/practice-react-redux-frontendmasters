@@ -8,9 +8,9 @@ import { addTodo, markDone } from "../redux/actions";
 function TodoManager({ todos, dispatchAddTodo, dispatchMarkDone }) {
   return (
     <div>
-      <h1>ToDo Manager</h1>
+      <h1>Shopping List</h1>
       <TodoForm addTodo={dispatchAddTodo} />
-      <TodoList todos={todos} dispatchMarkDone={dispatchMarkDone} />
+      {/* <TodoList todos={todos} dispatchMarkDone={dispatchMarkDone} /> */}
     </div>
   );
 }
