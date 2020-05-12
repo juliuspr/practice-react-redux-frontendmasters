@@ -1,5 +1,11 @@
-import { combineReducers } from "redux";
-import { INCREMENT, DECREMENT, ADD_TODO, MARK_DONE } from "./actions";
+import { combineReducers, bindActionCreators } from "redux";
+import {
+  INCREMENT,
+  DECREMENT,
+  ADD_TODO,
+  MARK_DONE,
+  SORT_ITEMS
+} from "./actions";
 import { v4 as uuidv4 } from "uuid";
 const initialState = { count: 1 };
 
@@ -42,6 +48,13 @@ export const todoReducer = (state = initialTodoState, action) => {
       }
     });
     return { ...state, todos: new_state };
+  }
+
+  if (action.type === SORT_ITEMS) {
+    return {
+      ...state,
+      todos: sorted_todos
+    };
   }
 
   return state;

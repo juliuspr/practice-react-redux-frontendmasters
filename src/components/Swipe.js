@@ -1,14 +1,14 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {
   SwipeableList,
   SwipeableListItem
 } from "@sandstreamdev/react-swipeable-list";
-import { addTodo, markDone } from "../redux/actions";
+import { addTodo, markDone, sortItems } from "../redux/actions";
 
 import "@sandstreamdev/react-swipeable-list/dist/styles.css";
 import { connect } from "react-redux";
 
-function Swipe({ todos, dispatchMarkDone }) {
+function Swipe({ todos, dispatchMarkDone, dispatchSortItems }) {
   return (
     <SwipeableList>
       {todos
@@ -46,7 +46,9 @@ function Swipe({ todos, dispatchMarkDone }) {
               id={todo.id}
               title="Double click to toggle"
               style={{ userSelect: "none", cursor: "pointer" }}
-              onDoubleClick={e => dispatchMarkDone(e.target.id)}
+              onDoubleClick={e => {
+                dispatchMarkDone(e.target.id);
+              }}
               className={todo.done ? "done list" : "list"}
             >
               {todo.text}
@@ -59,7 +61,8 @@ function Swipe({ todos, dispatchMarkDone }) {
 
 const mapTodoDispatchToProps = {
   dispatchAddTodo: addTodo,
-  dispatchMarkDone: markDone
+  dispatchMarkDone: markDone,
+  dispatchSortItems: sortItems
 };
 
 const mapTodoStateToProps = state => state.todos;

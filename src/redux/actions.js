@@ -3,6 +3,7 @@ export const DECREMENT = "DECREMENT";
 export const ADD_TODO = "ADD_TODO";
 export const REMOVE_TODO = "REMOVE_TODO";
 export const MARK_DONE = "MARK_DONE";
+export const SORT_ITEMS = "SORT_ITEMS";
 
 export const increment = text => {
   return {
@@ -35,5 +36,11 @@ export const markDone = id => {
   return {
     type: MARK_DONE,
     payload: { id }
+  };
+};
+
+export const sortItems = () => {
+  return {
+    type: SORT_ITEMS
   };
 };
