@@ -32,7 +32,15 @@ function Swipe({ todos, dispatchMarkDone }) {
             console.info(`Swipe progress: ${progress}%`)
           }
         >
-          <div className={todo.done ? "done list" : "list"}>{todo.text}</div>
+          <div
+            id={todo.id}
+            title="Double click to toggle"
+            style={{ userSelect: "none", cursor: "pointer" }}
+            onDoubleClick={e => dispatchMarkDone(e.target.id)}
+            className={todo.done ? "done list" : "list"}
+          >
+            {todo.text}
+          </div>
         </SwipeableListItem>
       ))}
     </SwipeableList>

@@ -6,6 +6,7 @@
 .done {
   text-decoration: line-through;
   color: #ddd;
+  background-color: #ccc;
 }
 
 li:hover {
