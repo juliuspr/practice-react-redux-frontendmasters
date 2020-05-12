@@ -6,6 +6,7 @@ import {
 import { addTodo, markDone, sortItems } from "../redux/actions";
 
 import "@sandstreamdev/react-swipeable-list/dist/styles.css";
+
 import { connect } from "react-redux";
 
 function Swipe({ todos, dispatchMarkDone, dispatchSortItems }) {
@@ -44,6 +45,7 @@ function Swipe({ todos, dispatchMarkDone, dispatchSortItems }) {
           >
             <div
               id={todo.id}
+              key={todo.id}
               title="Double click to toggle"
               style={{ userSelect: "none", cursor: "pointer" }}
               onDoubleClick={e => {

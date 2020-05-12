@@ -13,16 +13,26 @@ export default function({ addTodo }) {
 
   return (
     <div>
-      <form>
+      <form noValidate autoComplete="off">
         <input
           type="text"
           name="newTodo"
           value={state.todoInput}
           onChange={handleFormChange}
           placeholder="Add item..."
+          id="standard-basic"
+          label="Add Item..."
         />
-        <button type="submit" onClick={submitForm} onSubmit={submitForm}>
-          Add
+
+        <button
+          type="submit"
+          onClick={submitForm}
+          onSubmit={submitForm}
+          variant="contained"
+          color="primary"
+          disableElevation
+        >
+          +
         </button>
       </form>
     </div>
