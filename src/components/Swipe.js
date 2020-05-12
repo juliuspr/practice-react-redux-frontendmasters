@@ -11,38 +11,48 @@ import { connect } from "react-redux";
 function Swipe({ todos, dispatchMarkDone }) {
   return (
     <SwipeableList>
-      {todos.map(todo => (
-        <SwipeableListItem
-          swipeLeft={{
-            content: (
-              <div className="mark-done">
-                {todo.done ? "Reactivate" : "Mark as done"}
-              </div>
-            ),
-            action: () => {
-              console.info("swipe done action triggered");
-              dispatchMarkDone(todo.id);
-            }
-          }}
-          swipeRight={{
-            content: <div className="snooze">Snooze</div>,
-            action: () => console.info("swipe action triggered")
-          }}
-          onSwipeProgress={progress =>
-            console.info(`Swipe progress: ${progress}%`)
+      {todos
+        .sort((itemA, itemB) => {
+          if (itemA.done) {
+            return 1;
           }
-        >
-          <div
-            id={todo.id}
-            title="Double click to toggle"
-            style={{ userSelect: "none", cursor: "pointer" }}
-            onDoubleClick={e => dispatchMarkDone(e.target.id)}
-            className={todo.done ? "done list" : "list"}
+          if (!itemA.done) {
+            return -1;
+          }
+          return 0;
+        })
+        .map(todo => (
+          <SwipeableListItem
+            swipeLeft={{
+              content: (
+                <div className="mark-done">
+                  {todo.done ? "Reactivate" : "Mark as done"}
+                </div>
+              ),
+              action: () => {
+                console.info("swipe done action triggered");
+                dispatchMarkDone(todo.id);
+              }
+            }}
+            swipeRight={{
+              content: <div className="snooze">Snooze</div>,
+              action: () => console.info("swipe action triggered")
+            }}
+            onSwipeProgress={progress =>
+              console.info(`Swipe progress: ${progress}%`)
+            }
           >
-            {todo.text}
-          </div>
-        </SwipeableListItem>
-      ))}
+            <div
+              id={todo.id}
+              title="Double click to toggle"
+              style={{ userSelect: "none", cursor: "pointer" }}
+              onDoubleClick={e => dispatchMarkDone(e.target.id)}
+              className={todo.done ? "done list" : "list"}
+            >
+              {todo.text}
+            </div>
+          </SwipeableListItem>
+        ))}
     </SwipeableList>
   );
 }
